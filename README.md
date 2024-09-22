@@ -1,0 +1,1 @@
+# plugins-website-monetization-by-magenet
