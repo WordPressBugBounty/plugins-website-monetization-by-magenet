@@ -25,9 +25,9 @@ if (!class_exists('MagenetLinkAutoinstall')) {
         private $api_deactivate = "/wordpress/deactivate";
         private $api_uninstall = "/wordpress/uninstall";
         private $api_status = "/wordpress/status";
-        //private $is_active_seo_plugin = false;
+
         private $key = false;
-        //private $link_shown = 0;
+
         private $lastError = 0;
         private $the_content_log;
         private $plugin_name;
@@ -61,12 +61,9 @@ if (!class_exists('MagenetLinkAutoinstall')) {
 
             register_activation_hook($this->plugin_name, array(&$this, 'activate'));
             register_deactivation_hook($this->plugin_name, array(&$this, 'deactivate'));
-            //register_uninstall_hook($this->plugin_name, array(&$this, 'uninstall'));
 
             if (is_admin()) {
-                //add_action('wp_print_scripts', array(&$this, 'admin_load_scripts'));
                 add_action('admin_enqueue_scripts', array(&$this, 'admin_load_scripts'));
-                //add_action('wp_print_styles', array(&$this, 'admin_load_styles'));
                 add_action('admin_enqueue_scripts', array(&$this, 'admin_load_styles'));
                 add_action('admin_menu', array(&$this, 'admin_generate_menu'));
             }
@@ -109,7 +106,6 @@ if (!class_exists('MagenetLinkAutoinstall')) {
                             echo '<!-- MagenetMonetization 5 -->';
                             $this->isSideBarTriggered = true;
                         });
-                        //add_filter('widget_display_callback', function($data){ $this->widgetCounter++; echo '<!-- wdc '.$this->widgetCounter; echo (isset($data['text']) ? $data['text'] : '-'); echo '-->'; return $data; }); //can be used to insert data in text widget
                     }
                 } catch (Exception $exception) {
                     echo '<!-- MagenetMonetization exc0 -->';
@@ -140,39 +136,8 @@ if (!class_exists('MagenetLinkAutoinstall')) {
 
         public function activate()
         {
-            //global $wpdb;
-            //require_once(ABSPATH . 'wp-admin/upgrade-functions.php'); // depricated
-            //require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
             $this->table();
-
-            /*$table = $this->tbl_magenet_links;
-            $charset_collate = '';
-
-            if (@version_compare(mysqli_get_server_info(), '4.1.0', '>=')) {
-                if (!empty($wpdb->charset)) {
-                    $charset_collate = " DEFAULT CHARACTER SET {$wpdb->charset} ";
-                }
-                if (!empty($wpdb->collate)) {
-                    $charset_collate .= " COLLATE {$wpdb->collate} ";
-                }
-            }
-
-            $sql_table_magenet_links = "
-                CREATE TABLE `" . $wpdb->prefix . "magenet_links` (
-                `ID` INT(10) NOT NULL AUTO_INCREMENT,
-                `page_url` TEXT NOT NULL DEFAULT '',
-                `link_html` TEXT NOT NULL DEFAULT '',
-                PRIMARY KEY (`ID`)
-                )" . $charset_collate . ";";
-            $sql_add_index = "CREATE INDEX page_url ON `" . $wpdb->prefix . "magenet_links` (page_url(100));";
-
-            if ($wpdb->get_var("show tables like '" . $table . "'") != $table) {
-                dbDelta($sql_table_magenet_links);
-                $wpdb->query($sql_add_index);
-            }*/
-
-            $result = $this->sendRequest($this->api_host . $this->api_activate, $this->getKey());
+            $this->sendRequest($this->api_host . $this->api_activate, $this->getKey());
         }
 
         public function table()
@@ -379,7 +344,7 @@ if (!class_exists('MagenetLinkAutoinstall')) {
                             $result_text = '<span style="color: #ca2222;">Incorrect Key. Please try again.</span>';
                         }
                         else {
-                            $result_text = '<span style="color: #ca2222;">Temporary Error (' . $this->lastError . '). Please try again later. If you continue to see this error over an extended period of time, <a href="http://www.magenet.com/contact-us/" target="_blank">please let us know</a> so we can look into the issue.</span>';
+                            $result_text = '<span style="color: #ca2222;">Temporary Error (' . $this->lastError . '). Please try again later. If you continue to see this error over an extended period of time, <a href="https://www.magenet.com/contact-us/" target="_blank">please let us know</a> so we can look into the issue.</span>';
                         }
                     }
                 }

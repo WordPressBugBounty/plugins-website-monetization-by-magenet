@@ -1,10 +1,10 @@
 <?php
 /*
   Plugin Name: Website Monetization by MageNet
-  Description: Website Monetization by MageNet allows you to sell contextual ads from your pages automatically and receive payments with PayPal. To get started: 1) Click the "Activate" link to the left of this description, 2) <a href="http://www.magenet.com" target="_blank">Sign up for a MageNet Key</a>, and 3) Go to Settings > "Website Monetization by MageNet" configuration page, and save your MageNet Key.
-  Version: 1.0.29.2
+  Description: Website Monetization by MageNet allows you to sell contextual ads from your pages automatically and receive payments with PayPal. To get started: 1) Click the "Activate" link to the left of this description, 2) <a href="https://www.magenet.com" target="_blank">Sign up for a MageNet Key</a>, and 3) Go to Settings > "Website Monetization by MageNet" configuration page, and save your MageNet Key.
+  Version: 1.0.29.3
   Author: MageNet.com
-  Author URI: http://www.magenet.com
+  Author URI: https://www.magenet.com
   Text Domain: website-monetization-by-magenet
  */
 define("plugin_file", __FILE__);
@@ -38,7 +38,6 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'my_plugin_action
 
 function my_plugin_action_links($links)
 {
-    $links[] = '<a href="http://www.magenet.com/magenet-services/#vip" target="_blank">Premium Support</a>';
     $links[] = '<a href="javascript:void(0)" class="show-magenet-tutorial">?</a>';
     return $links;
 }
@@ -55,14 +54,14 @@ function magenet_notices()
         </div>
 
         <div id="mn-1" class="magenet-tutorial-popup" style="display: none" title="Step 1">
-            <a href="http://cp.magenet.com/" target="_blank">Log in to MageNet</a>&nbsp;&nbsp;if you already have <strong>MageNet</strong> account<br><br>
+            <a href="https://cp.magenet.com/" target="_blank">Log in to MageNet</a>&nbsp;&nbsp;if you already have <strong>MageNet</strong> account<br><br>
             or<br><br>
-            <a href="http://www.magenet.com/#sign_up" target="_blank">Sign up for MageNet</a>&nbsp;&nbsp;to provide plugin with ads from our marketplace
+            <a href="https://www.magenet.com/#sign_up" target="_blank">Sign up for MageNet</a>&nbsp;&nbsp;to provide plugin with ads from our marketplace
             <?php magenet_tutorial_buttons(-1); ?>
         </div>
 
         <div id="mn-2" class="magenet-tutorial-popup" style="display: none" title="Step 2">
-            <a href="http://cp.magenet.com/sites/sites/add" target="_blank">Add</a> your site to your <strong>MageNet</strong> account<br><br>
+            <a href="https://cp.magenet.com/sites/sites/add" target="_blank">Add</a> your site to your <strong>MageNet</strong> account<br><br>
             then click <span class="confirm-website">Confirm Website</span><br><br>
             in the opened pop-up copy of <b>Magenet Key</b><br>situated under "Install Wordpress Plugin" link
             <?php magenet_tutorial_buttons(); ?>
@@ -143,13 +142,6 @@ class Magenet_Widget extends WP_Widget
             $select = esc_attr($instance['select']);
         else
             $select = 0;
-?>
-<?php /*
-        <p>You can set up as many widgets and locations as you wish and adjust the widgets to show as many ads as affordable.</p>
-        <p>Exapmle:</p>
-        <p>1st widget adjusted to place 2 ads - the first 2 sold ads will be placed at the location of the 1st widget then.</p>
-        <p>2nd widget adjusted to place 1 ad - the 3rd sold ad will be placed at the location of 2nd widget.</p>
-        <p>3rd widget adjusted to place the rest of ads (All ads chosen) - all the ads after 3rd will be placed in the 3rd widget.</p> */
 ?>
         <p>
             <label for="<?php echo $this->get_field_id('select'); ?>">Select the number ads to place in current widget</label>
@@ -247,7 +239,7 @@ function magenet_dashboard_action_callback()
             else {
                 $mn_api_str = $response;
 
-                $rss = fetch_feed( 'http://www.magenet.com/feed/' );
+                $rss = fetch_feed( 'https://www.magenet.com/feed/' );
                 if ( ! is_wp_error( $rss ) ) :
                     $maxitems = $rss->get_item_quantity( 1 ); 
                     $rss_items = $rss->get_items( 0, $maxitems );

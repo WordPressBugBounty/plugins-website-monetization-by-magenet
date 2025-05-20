@@ -2,7 +2,7 @@
 Contributors: MageNet
 Tags: website monetization, advertising, contextual ads, earn money online, contextual advertising, text ads, sell ads
 Requires at least: 4.0
-Tested up to: 5.8
+Tested up to: 6.8
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -80,6 +80,7 @@ MageNet crawler will index your sites the same way Google does. It will â€œreadâ
 4. "Pages options" menu
 
 == Changelog ==
+
 = 1.0.29 =
 * Bug fixes *
 
